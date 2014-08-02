@@ -1,4 +1,6 @@
-antonio = ";';;;;;;;;;::;:::::::::;;:::::;;:::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::::::::::::::::::::::::,,,:::;;;;;;;;;;;;;;;;::::::;;;;;;;:::::::::;
+require_relative '../../db/config'
+
+@antonio = ";';;;;;;;;;::;:::::::::;;:::::;;:::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::::::::::::::::::::::::,,,:::;;;;;;;;;;;;;;;;::::::;;;;;;;:::::::::;
 ;';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::::::;;;:::::;;;;;;;;;;::::::;;:::::::::::;:::::::::::
 ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;::::::::::::::::::::::::::::::::::::,,,,,,,,,:::,,,,,,,,
 ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::::::::::::::::::::::::::::::::::,,,,,,,,,,,,,,,,,,,
@@ -5549,6 +5551,10 @@ Y8888P  ~Y8888P' `8888Y'    YP          `Y88P' YP   YP VP   V8P       YP        
 
                                                                                                                                                                              "
 
+
+# @mule_deer = ["Antonio," "Pat", "Nina", "Ian", "Frank", "Cassidy", "Alex", "Yen", "Johan", "Jessica", "Erick", "Vlad", "Tommy", "Gunnari", "Evan", "Dani", "Mathew", "Ori", "Pat_Lauer", "Whitney", "Katia", "Zen", "Premila", "Brooks", "Melissa"]
+@mule_deer = ["Antonio"]
+
 def print_instructions
   system "clear"
   space(10)
@@ -5567,17 +5573,22 @@ def get_input
   @input = gets.chomp
 end
 
-def select_person(cohort_array)
+def rand_person(cohort_array)
+  cohort_array.sample
+end
+
+def select_person
   20.times do
       system "clear"
       puts "\n" * 15
-      puts cohort_array.sample[3311...16559]
+      puts Picture.find_by_name(rand_person(@mule_deer)).picture[3311...16559]
       sleep 0.1
   end
 end
 
-mule_deer = [antonio, pat, nina, ian, frank, cassidy, alex, yen, johan, jessica, erick, vlad, tommy, gunnari, evan, dani, mathew, ori, pat_lauer, whitney, katia, zen, premila, brooks, melissa]
+# mule_deer = Picture.all
 
+# p mule_deer.first
 
 print_instructions
 get_input
@@ -5588,7 +5599,7 @@ while @input != "exit"
   when "instructions"
     print_instructions
   when ""
-    select_person(mule_deer)
+    select_person
   end
 
   get_input
